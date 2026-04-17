@@ -1,0 +1,110 @@
+{
+  "total_pipeline_days": 13.0,
+  "processing_days": 9.5,
+  "handover_days": 2.5,
+  "transit_days": 1.0,
+  "hidden_time_pct": 0.31,
+  "stages": [
+    {
+      "stage_id": "S1",
+      "factory_id": "F1",
+      "description": "Raw material intake, cutting, straightening, inspection",
+      "duration_days": 1.0,
+      "sequence": 1,
+      "type": "processing"
+    },
+    {
+      "stage_id": "S2",
+      "factory_id": "F1",
+      "description": "Hot forming \u2014 heated and pressed into spring profile",
+      "duration_days": 1.5,
+      "sequence": 2,
+      "type": "processing"
+    },
+    {
+      "stage_id": "F1_F2_handover",
+      "factory_id": null,
+      "description": "Batch accumulation at F1 plus transit to F2",
+      "duration_days": 1.5,
+      "sequence": 3,
+      "type": "handover",
+      "from_factory": "F1",
+      "to_factory": "F2"
+    },
+    {
+      "stage_id": "S3",
+      "factory_id": "F2",
+      "description": "Heat treatment \u2014 850\u2013900\u00b0C held to specification",
+      "duration_days": 2.0,
+      "sequence": 4,
+      "type": "processing"
+    },
+    {
+      "stage_id": "S4",
+      "factory_id": "F2",
+      "description": "Quenching \u2014 rapid cooling to lock microstructure",
+      "duration_days": 1.0,
+      "sequence": 5,
+      "type": "processing"
+    },
+    {
+      "stage_id": "F2_F3_handover",
+      "factory_id": null,
+      "description": "Batch accumulation at F2 plus transit to F3/F4",
+      "duration_days": 2.5,
+      "sequence": 6,
+      "type": "handover",
+      "from_factory": "F2",
+      "to_factory": "F3"
+    },
+    {
+      "stage_id": "S5",
+      "factory_id": "F3",
+      "factory_id_alternate": "F4",
+      "description": "Final assembly \u2014 leaf stack, centre bolt, clips, U-bolts",
+      "duration_days": 1.5,
+      "sequence": 7,
+      "type": "processing"
+    },
+    {
+      "stage_id": "S6",
+      "factory_id": "F3",
+      "factory_id_alternate": "F4",
+      "description": "Painting and corrosion treatment (govt-spec via F4 only)",
+      "duration_days": 1.5,
+      "sequence": 8,
+      "type": "processing"
+    },
+    {
+      "stage_id": "S7",
+      "factory_id": "F3",
+      "factory_id_alternate": "F4",
+      "description": "Packaging, batch tagging, dispatch staging",
+      "duration_days": 0.5,
+      "sequence": 9,
+      "type": "processing"
+    }
+  ],
+  "classification_rules": {
+    "BLOCKED_AT_F2": "Current stage is S3 or S4, OR in F1_F2_handover with less than 1.0 day remaining before F2 entry",
+    "QUEUED_AT_F1": "Current stage is S1, S2, OR in F1_F2_handover with more than 1.0 day remaining before F2 entry",
+    "SAFE_PAST_F2": "Current stage is F2_F3_handover, S5, S6, or S7"
+  },
+  "backup_capacity": {
+    "source_factory": "F1",
+    "furnace_nameplate_per_day": 340,
+    "spare_per_day": 130,
+    "total_sets_5day_disruption": 650,
+    "coverage_pct_of_blocked": 21.0,
+    "cost_rate": 0.95,
+    "quality_risk_products": [
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "note": "130/day spare \u00d7 5 days = 650 sets. Covers 21% of 3,100 blocked sets."
+  }
+}

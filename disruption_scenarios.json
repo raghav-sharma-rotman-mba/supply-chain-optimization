@@ -1,0 +1,65 @@
+[
+  {
+    "scenario_id": "DISRUPT-01",
+    "name": "F2 furnace breakdown",
+    "short_name": "Furnace failure \u2014 5 days",
+    "facility_id": "F2",
+    "failure_type": "Furnace breakdown",
+    "duration_days": 5,
+    "affected_stages": [
+      "S3",
+      "S4"
+    ],
+    "backup_available": true,
+    "backup_facility_id": "F1",
+    "backup_capacity_per_day": 130,
+    "backup_total_sets": 650,
+    "backup_coverage_pct": 21.0,
+    "backup_cost_rate": 0.95,
+    "quality_risk_products": [
+      "P04",
+      "P05",
+      "P06",
+      "P07",
+      "P08",
+      "P09"
+    ],
+    "description": "Primary disruption scenario. F2 furnace fails for 5 days. 6 orders (3,100 sets) physically blocked at F2. 5 orders (7,000 sets) queued at F1 with no downstream path. F1 backup furnace: 130 spare sets/day \u00d7 5 days = 650 sets \u2014 covers 21% of blocked volume. Core triage tension: ORD-2607 (Lakeland, CAD 24/set) vs ORD-2601 (Lakeland, CAD 112/set). Combined Lakeland relationship: CAD 442,200 in current book."
+  },
+  {
+    "scenario_id": "DISRUPT-02",
+    "name": "EN45 steel price spike",
+    "short_name": "Steel cost shock \u2014 25%",
+    "facility_id": null,
+    "failure_type": "Raw material cost shock",
+    "duration_days": null,
+    "affected_stages": [
+      "S1",
+      "S2"
+    ],
+    "price_increase_pct": 25,
+    "backup_available": false,
+    "description": "EN45 spring steel price increases 25%. Tests margin erosion analysis and cost-contribution reasoning across the full order book."
+  },
+  {
+    "scenario_id": "DISRUPT-03",
+    "name": "Rush government order",
+    "short_name": "Rush order \u2014 3,500 sets",
+    "facility_id": null,
+    "failure_type": "Demand spike",
+    "duration_days": null,
+    "order_quantity_sets": 3500,
+    "required_delivery_weeks": 3,
+    "affected_stages": [
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "S5",
+      "S6",
+      "S7"
+    ],
+    "backup_available": false,
+    "description": "Rush government order for 3,500 sets in 3 weeks. Tests opportunity cost analysis and capacity allocation against existing order book."
+  }
+]

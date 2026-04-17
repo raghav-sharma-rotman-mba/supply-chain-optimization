@@ -1,0 +1,102 @@
+[
+  {
+    "factory_id": "F1",
+    "name": "Westfield Processing",
+    "owner": "Dave Morrison",
+    "role": "Upstream \u2014 raw preparation and hot forming",
+    "stages": [
+      "S1",
+      "S2"
+    ],
+    "backup_stages": [
+      "S3",
+      "S4"
+    ],
+    "capacity_per_stage": {
+      "S1": 1100,
+      "S2": 825,
+      "S3_backup": 340
+    },
+    "spare_backup_capacity_per_day": 130,
+    "utilization": 0.62,
+    "cost_multiplier": 0.85,
+    "surge_premium": 0.1,
+    "effective_backup_rate": 0.95,
+    "is_bottleneck": false,
+    "government_spec_certified": false,
+    "notes": "Upstream entry point \u2014 no redundancy. Runs below capacity deliberately to buffer the F2 bottleneck. Backup heat treatment furnace at 340/day nameplate, 130/day spare after normal ops. Older equipment \u2014 elevated quality risk for tight-tolerance products."
+  },
+  {
+    "factory_id": "F2",
+    "name": "Northern Forge",
+    "owner": "Mike Sullivan",
+    "role": "Midstream \u2014 heat treatment and quenching. Network bottleneck.",
+    "stages": [
+      "S3",
+      "S4"
+    ],
+    "backup_stages": [],
+    "capacity_per_stage": {
+      "S3": 900,
+      "S4": 900
+    },
+    "spare_backup_capacity_per_day": 0,
+    "utilization": 0.85,
+    "cost_multiplier": 0.9,
+    "surge_premium": null,
+    "effective_backup_rate": null,
+    "is_bottleneck": true,
+    "government_spec_certified": false,
+    "notes": "Binding network constraint. Effective throughput 765/day at 85% utilization. Heat treatment ~30% of total transformation cost. Single point of failure \u2014 failure requires F1 backup furnace."
+  },
+  {
+    "factory_id": "F3",
+    "name": "Ridgeway Assembly",
+    "owner": "Tom Bradley",
+    "role": "Downstream hub \u2014 assembly, painting, packaging, customer interface",
+    "stages": [
+      "S5",
+      "S6",
+      "S7"
+    ],
+    "backup_stages": [],
+    "capacity_per_stage": {
+      "S5": 980,
+      "S6": 1050,
+      "S7": 1200
+    },
+    "spare_capacity_per_day": 215,
+    "utilization": 0.78,
+    "cost_multiplier": 1.0,
+    "surge_premium": null,
+    "effective_backup_rate": null,
+    "is_bottleneck": false,
+    "government_spec_certified": false,
+    "notes": "Customer-facing hub. Tom Bradley holds 30-year relationships across 250+ B2B accounts. Baseline cost reference for network. S5 at 980/day is F3 internal constraint."
+  },
+  {
+    "factory_id": "F4",
+    "name": "Bayview Components",
+    "owner": "Chris Lawson",
+    "role": "Independent partner \u2014 S5\u2013S7, government-specification coating",
+    "stages": [
+      "S5",
+      "S6",
+      "S7"
+    ],
+    "backup_stages": [],
+    "capacity_per_stage": {
+      "S5": 560,
+      "S6": 640,
+      "S7": 490
+    },
+    "spare_capacity_per_day": 170,
+    "utilization": 0.71,
+    "cost_multiplier": 1.15,
+    "surge_premium": null,
+    "effective_backup_rate": null,
+    "is_bottleneck": false,
+    "government_spec_certified": true,
+    "notes": "Independent business \u2014 not subordinate. Participates commercially to fill 29% spare capacity at 1.15x premium. Only factory certified for govt-spec coating. S7 at 490/day is F4 internal constraint. All communications must use collaborative, not directive, language."
+  }
+]
